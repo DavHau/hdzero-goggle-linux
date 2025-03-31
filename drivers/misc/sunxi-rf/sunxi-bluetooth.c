@@ -14,6 +14,26 @@
 #include <linux/sunxi-gpio.h>
 #include "sunxi-rfkill.h"
 
+static struct sunxi_bt_platdata *bt_data;
+
+void sunxi_bluetooth_set_power(bool on_off)
+{
+	if (!bt_data)
+		return;
+
+	if (!on_off && gpio_is_valid(bt_data->gpio_bt_rst))
+		gpio_set_value(bt_data->gpio_bt_rst, 0);
+	else if (on_off && gpio_is_valid(bt_data->gpio_bt_rst)) {
+		gpio_set_value(bt_data->gpio_bt_rst, 1);
+		mdelay(10);
+	}
+
+	bt_data->power_state = on_off;
+
+	return;
+}
+EXPORT_SYMBOL_GPL(sunxi_bluetooth_set_power);
+
 static int sunxi_bt_on(struct sunxi_bt_platdata *data, bool on_off)
 {
 	struct platform_device *pdev = data->pdev;
@@ -159,6 +179,7 @@ static int sunxi_bt_set_block(void *data, bool blocked)
 		dev_err(&pdev->dev, "set block failed\n");
 		return ret;
 	}
+	sunxi_wl_chipen_set(1, !blocked);
 
 	return 0;
 }
@@ -335,6 +356,7 @@ end:
 	platform_set_drvdata(pdev, data);
 
 	data->power_state = 0;
+	bt_data = data;
 	return 0;
 
 fail_rfkill:
@@ -352,6 +374,7 @@ static int sunxi_bt_remove(struct platform_device *pdev)
 	struct rfkill *rfk = data->rfkill;
 	int i = 0;
 
+	bt_data = NULL;
 	devm_kfree(&pdev->dev, data->bt_power);
 	for (i = 0; i < (data->power_num); i++)
 		devm_kfree(&pdev->dev, data->bt_power_name[i]);

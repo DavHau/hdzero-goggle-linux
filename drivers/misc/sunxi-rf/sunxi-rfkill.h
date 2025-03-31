@@ -15,63 +15,63 @@
  *
  */
 
-#ifndef __SUNXI_RFKILL_H
-#define __SUNXI_RFKILL_H
+ #ifndef __SUNXI_RFKILL_H
+ #define __SUNXI_RFKILL_H
 
-#include <linux/regulator/consumer.h>
-#include <linux/platform_device.h>
-#include <linux/clk.h>
-#include <linux/rfkill.h>
+ #include <linux/regulator/consumer.h>
+ #include <linux/platform_device.h>
+ #include <linux/clk.h>
+ #include <linux/rfkill.h>
 
-struct sunxi_bt_platdata {
-	int power_num;
-	int bt_power_voltage;
-	int bt_io_voltage;
-	struct regulator **bt_power;
-	struct regulator *io_regulator;
-	struct clk *lpo;
-	int gpio_bt_rst;
-	char **bt_power_name;
-	char *io_regulator_name;
-	char *clk_name;
+ struct sunxi_bt_platdata {
+	 int power_num;
+	 int bt_power_voltage;
+	 int bt_io_voltage;
+	 struct regulator **bt_power;
+	 struct regulator *io_regulator;
+	 struct clk *lpo;
+	 int gpio_bt_rst;
+	 char **bt_power_name;
+	 char *io_regulator_name;
+	 char *clk_name;
 
-	int power_state;
-	struct rfkill *rfkill;
-	struct platform_device *pdev;
-};
+	 int power_state;
+	 struct rfkill *rfkill;
+	 struct platform_device *pdev;
+ };
 
-struct sunxi_wlan_platdata {
-	unsigned int wakeup_enable;
+ struct sunxi_wlan_platdata {
+	 unsigned int wakeup_enable;
 
-	int bus_index;
-	int wlan_power_voltage;
-	int wlan_io_voltage;
+	 int bus_index;
+	 int wlan_power_voltage;
+	 int wlan_io_voltage;
 
-	struct regulator **wlan_power;
-	struct regulator *io_regulator;
-	struct clk *lpo;
+	 struct regulator **wlan_power;
+	 struct regulator *io_regulator;
+	 struct clk *lpo;
 
-	int gpio_wlan_regon;
-	int gpio_wlan_hostwake;
-	int gpio_chip_en;
-	int power_num;
+	 int gpio_wlan_regon;
+	 int gpio_wlan_hostwake;
+	 int gpio_chip_en;
+	 int power_num;
 
-	char **wlan_power_name;
-	char *io_regulator_name;
-	char *clk_name;
+	 char **wlan_power_name;
+	 char *io_regulator_name;
+	 char *clk_name;
 
-	int power_state;
-	struct platform_device *pdev;
-	int gpio_chip_en_invert;
-};
+	 int power_state;
+	 struct platform_device *pdev;
+	 int gpio_chip_en_invert;
+ };
 
-extern void sunxi_wl_chipen_set(int dev, int on_off);
-extern void sunxi_wlan_set_power(bool on_off);
-extern int  sunxi_wlan_get_bus_index(void);
-extern int  sunxi_wlan_get_oob_irq(void);
-extern int  sunxi_wlan_get_oob_irq_flags(void);
-extern int  enable_gpio_wakeup_src(int para);
-extern void sunxi_mmc_rescan_card(unsigned ids);
-extern int  sunxi_get_soc_chipid(uint8_t *chipid);
+ extern void sunxi_wl_chipen_set(int dev, int on_off);
+ extern void sunxi_wlan_set_power(bool on_off);
+ extern int  sunxi_wlan_get_bus_index(void);
+ extern int  sunxi_wlan_get_oob_irq(void);
+ extern int  sunxi_wlan_get_oob_irq_flags(void);
+ extern int  enable_gpio_wakeup_src(int para);
+ extern void sunxi_mmc_rescan_card(unsigned ids);
+ extern int  sunxi_get_soc_chipid(uint8_t *chipid);
 
-#endif /* SUNXI_RFKILL_H */
+ #endif /* SUNXI_RFKILL_H */
