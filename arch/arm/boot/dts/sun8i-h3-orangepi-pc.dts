@@ -68,7 +68,6 @@
 		pwr_led {
 			label = "orangepi:green:pwr";
 			gpios = <&r_pio 0 10 GPIO_ACTIVE_HIGH>;
-			default-state = "on";
 		};
 
 		status_led {
