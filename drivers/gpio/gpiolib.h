@@ -17,6 +17,7 @@
 #include <linux/device.h>
 #include <linux/module.h>
 #include <linux/cdev.h>
+#include <linux/gpio/consumer.h>
 
 #ifdef CONFIG_ARCH_SUNXI
 #include <linux/sunxi-gpio.h>
