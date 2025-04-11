@@ -31,6 +31,7 @@
 #include <linux/sunxi-gpio.h>
 #include <asm/uaccess.h>
 #include <linux/arisc/arisc.h>
+#include <linux/gpio/driver.h>
 
 #include "../core.h"
 #include "../pinconf.h"
