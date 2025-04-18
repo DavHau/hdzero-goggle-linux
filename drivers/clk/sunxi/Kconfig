@@ -54,7 +54,6 @@ config CLK_SUNXI_PRCM_SUN9I
 
 config CLK_SUN8IW15
 	tristate "Legacy clock support for sun8iw15p1"
-	default y
 	depends on ARCH_SUN8IW15
 	help
 	  Legacy clock driver for sun8iw15p1.
