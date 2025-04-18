@@ -117,7 +117,64 @@
 /* See SDRAM Controller Spec: DRAMC BW Counter Register (offset:0xa0) */
 enum mbus_pmu {
 	MBUS_PMU_CPU        = 0,
-#if IS_ENABLED(CONFIG_ARCH_SUN8IW20) || IS_ENABLED(CONFIG_ARCH_SUN20IW1)
+
+#if IS_ENABLED(CONFIG_ARCH_SUN8IW10)
+	MBUS_PMU_EINK0  = 1,
+	MBUS_PMU_EDMA   = 2,
+	MBUS_PMU_MAHB   = 3,
+#elif IS_ENABLED(CONFIG_ARCH_SUN8IW12)
+	MBUS_PMU_ECI  = 1,
+	MBUS_PMU_VE   = 2,
+#elif IS_ENABLED(CONFIG_ARCH_SUN8IW16) || \
+	IS_ENABLED(CONFIG_ARCH_SUN50IW9)
+	MBUS_PMU_MAHB   = 1,
+	MBUS_PMU_DMA    = 2,
+	MBUS_PMU_VE     = 3,    /* VE */
+	MBUS_PMU_CE     = 4,    /* CE */
+	MBUS_PMU_NAND   = 5,    /* NAND */
+#elif IS_ENABLED(CONFIG_ARCH_SUN8IW19)
+	MBUS_PMU_MAHB   = 1,
+	MBUS_PMU_DMA    = 2,
+	MBUS_PMU_VE     = 3,
+	MBUS_PMU_CE     = 4,
+	MBUS_PMU_CSI    = 5,
+#else
+	MBUS_PMU_GPU    = 1,    /* GPU bandwidth */
+	MBUS_PMU_VE     = 2,    /* VE */
+	MBUS_PMU_DISP   = 3,    /* DISPLAY */
+#endif
+
+#if !IS_ENABLED(CONFIG_ARCH_SUN8IW16) && \
+	!IS_ENABLED(CONFIG_ARCH_SUN50IW9) && \
+	!IS_ENABLED(CONFIG_ARCH_SUN8IW19)
+	MBUS_PMU_OTH    = 4,    /* other masters */
+	MBUS_PMU_TOTAL  = 5,    /* total masters */
+#endif
+
+#if !IS_ENABLED(CONFIG_ARCH_SUN8IW6) && \
+	!IS_ENABLED(CONFIG_ARCH_SUN8IW19)
+	MBUS_PMU_CSI    = 6,    /* csi masters */
+#endif
+
+#if IS_ENABLED(CONFIG_ARCH_SUN8IW16) || \
+	IS_ENABLED(CONFIG_ARCH_SUN50IW9)
+	MBUS_PMU_ISP    = 7,    /* ISP */
+	MBUS_PMU_G2D_MIX = 8,	/* g2d */
+	MBUS_PMU_G2D_ROT = 9,   /* g2d */
+	MBUS_PMU_DE     = 10,    /* DE */
+	MBUS_PMU_ISE    = 11,
+	MBUS_PMU_EISE   = 12,
+	MBUS_PMU_TOTAL  = 13,
+#elif IS_ENABLED(CONFIG_ARCH_SUN8IW19)
+	MBUS_PMU_G2D    = 7,
+	MBUS_PMU_DE     = 8,
+	MBUS_PMU_IOMMU  = 9,
+	MBUS_PMU_EISE   = 10,
+	MBUS_PMU_DSPO   = 11,
+	MBUS_PMU_NNA    = 12,
+	MBUS_PMU_TOTAL  = 13,
+
+#elif IS_ENABLED(CONFIG_ARCH_SUN8IW20) || IS_ENABLED(CONFIG_ARCH_SUN20IW1)
 	MBUS_PMU_RISCV_SYS  = 1,
 	MBUS_PMU_MAHB       = 2,
 	MBUS_PMU_DMA        = 3,
@@ -148,8 +205,14 @@ enum mbus_pmu {
 	MBUS_PMU_GPU        = 12,
 	MBUS_PMU_TOTAL      = 13,
 	MBUS_PMU_MAX        = 14,
+#endif
+
+#if (!defined CONFIG_ARCH_SUN8IW16) && \
+	(!defined CONFIG_ARCH_SUN50IW9) && \
+	(!defined CONFIG_ARCH_SUN8IW19)
+	MBUS_PMU_MAX    = 7,    /* max masters */
 #else
-	/* ... */
+	MBUS_PMU_MAX    = 14,    /* max masters */
 #endif
 };
 
@@ -302,7 +365,7 @@ int notrace mbus_port_setpri(enum mbus_port port, bool pri)
 		return -ENODEV;
 
 	mutex_lock(&mbus_seting);
-#if (defined MBUS_MAST_ACPR_CFG_REG)
+	#if (defined MBUS_MAST_ACPR_CFG_REG)
 	value = readl_relaxed(mbus_ctrl_base + MBUS_MAST_ACPR_CFG_REG);
 	value &= ~(1 << port);
 	writel_relaxed(value | (pri << port),
@@ -725,7 +788,7 @@ static unsigned int mbus_get_value(struct mbus_data *data,
 	switch (index) {
 	case MBUS_PORT_PRI:
 		for_each_ports(i) {
-#if (defined MBUS_MAST_ACPR_CFG_REG)
+			#if (defined MBUS_MAST_ACPR_CFG_REG)
 			value = readl_relaxed(mbus_ctrl_base +
 					MBUS_MAST_ACPR_CFG_REG);
 			value >>= i;
