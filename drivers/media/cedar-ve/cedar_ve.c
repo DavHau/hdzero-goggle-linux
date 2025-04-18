@@ -228,6 +228,8 @@ struct cedar_dev {
 	u32 jpeg_irq_flag;					  /* flag of video jpeg dec irq generated */
 	u32 jpeg_irq_value;					  /* value of video jpeg dec  irq */
 
+	unsigned int *prcm_bass_vir;/*  PRCM: power reset clock management*/
+
 	struct mutex lock_vdec;
 	struct mutex lock_jdec;
 	struct mutex lock_venc;
