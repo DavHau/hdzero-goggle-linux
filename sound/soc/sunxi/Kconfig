@@ -1,5 +1,10 @@
 # SPDX-License-Identifier: GPL-2.0-only
 # Embedded Codec and Affiliated
+config SND_SUNXI_SOC_RWFUNC
+	bool
+
+config SND_SUNXI_SOC_INTER_I2S
+	bool
 
 # SUNXI Platform DMA
 config SND_SUNXI_SOC
@@ -9,6 +14,10 @@ config SND_SUNXI_SOC
 # Dummy CPU DAI module
 config SND_SUNXI_SOC_CPUDAI
 	depends on ARCH_SUNXI
+	tristate
+
+# HDMI Module
+config SND_SUNXI_SOC_HDMI
 	tristate
 
 # SUNXI Codec Embedded
@@ -22,6 +31,9 @@ config SND_SUN8IW20_CODEC
 	tristate
 
 config SND_SUN20IW1_CODEC
+	tristate
+
+config SND_SUN8IW16_CODEC
 	tristate
 
 menu "Allwinner SoC Audio support"
@@ -115,6 +127,19 @@ config SND_SUNXI_SOC_SUN50IW12_CODEC
    help
 	Select Y or M to add support for the Codec embedded in the Allwinner
 	SUN50IW12 and affiliated SoCs.
+
+config SND_SUNXI_SOC_SUN8IW16_CODEC
+	tristate "Allwinner Sun8iw16 Codec Support"
+	select SND_SUNXI_SOC
+	select SND_SOC_GENERIC_DMAENGINE_PCM
+	select REGMAP_MMIO
+	select SND_SUN8IW16_CODEC
+	select SND_SUNXI_SOC_RWFUNC
+	select SND_SUNXI_SOC_INTER_I2S
+	depends on ARCH_SUN8IW16
+    help
+        Select Y or M to add support for the Codec embedded in the Allwinner
+        SUN8IW16 and affiliated SoCs.
 
 config SND_SUNXI_SOC_SUN8IW20_CODEC
 	tristate "Allwinner Sun8iw20 Codec Support"
