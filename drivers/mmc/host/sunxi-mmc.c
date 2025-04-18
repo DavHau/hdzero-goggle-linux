@@ -46,7 +46,7 @@
 #include <linux/mmc/card.h>
 #include <linux/mmc/slot-gpio.h>
 #include "../core/card.h"
-//#include <linux/sunxi-sid.h>
+#include <linux/sunxi-sid.h>
 #include "sunxi-mmc.h"
 #include "sunxi-mmc-sun50iw1p1-2.h"
 #include "sunxi-mmc-sun50iw1p1-0.h"
