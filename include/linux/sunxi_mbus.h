@@ -56,7 +56,22 @@ enum mbus_port {
 	MBUS_PORT_IOMMU         = 25,
 	MBUS_PORT_HDMI          = 39,
 	MBUS_PORTS_MAX          = 40,
-
+#elif IS_ENABLED(CONFIG_ARCH_SUN8IW16) || IS_ENABLED(CONFIG_ARCH_SUN50IW9)
+	MBUS_PORT_CPU           = 0,
+	/*reserved: 1*/
+	MBUS_PORT_MAHB          = 2,
+	MBUS_PORT_DMA           = 3,
+	MBUS_PORT_VE            = 4,
+	MBUS_PORT_CE            = 5,
+	MBUS_PORT_NDFC0         = 8,
+	MBUS_PORT_CSI0          = 11,
+	MBUS_PORT_ISP0          = 12,
+	MBUS_PORT_G2D_MIX       = 13,
+	MBUS_PORT_G2D_ROT       = 21,
+	MBUS_PORT_ISE           = 27,
+	MBUS_PORT_EISE          = 29,
+	MBUS_PORT_DE200         = 35,
+	MBUS_PORTS_MAX          = 36,
 #else
 	/* ... */
 #endif
