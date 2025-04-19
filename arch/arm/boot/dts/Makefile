@@ -1127,7 +1127,20 @@ dtb-$(CONFIG_MACH_SUN8I) += \
 	sun8i-t3-cqa3t-bv3.dtb \
 	sun8i-v3s-licheepi-zero.dtb \
 	sun8i-v3s-licheepi-zero-dock.dtb \
-	sun8i-v40-bananapi-m2-berry.dtb
+	sun8i-v40-bananapi-m2-berry.dtb \
+	sun8iw16p1-perf1_axp2101.dtb \
+	sun8iw16p1-perf2.dtb \
+	sun8iw16p1-pro_axp2101.dtb \
+	sun8iw16p1-pro.dtb \
+	sun8iw16p1-soc.dtb \
+	sun8iw16p1-tf665_axp2101.dtb \
+	sun8iw16p1-v313-sdv.dtb \
+	sun8iw16p1-v316-cdr.dtb \
+	sun8iw16p1-v316-sdv.dtb \
+	sun8iw16p1-v316-sdvlpddr.dtb \
+	sun8iw16p1-v536-cdr.dtb \
+	sun8iw16p1-v536-Lindenis_SBC.dtb \
+	sun8iw16p1-v536-Lindenis_SOM.dtb
 dtb-$(CONFIG_MACH_SUN9I) += \
 	sun9i-a80-optimus.dtb \
 	sun9i-a80-cubieboard4.dtb
