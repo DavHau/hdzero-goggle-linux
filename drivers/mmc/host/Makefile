@@ -77,6 +77,7 @@ sunxi_mmc_host-$(CONFIG_MMC_SUNXI_V4P00X)          += sunxi-mmc-v4p00x.o
 sunxi_mmc_host-$(CONFIG_MMC_SUNXI_V4P10X)          += sunxi-mmc-v4p10x.o
 sunxi_mmc_host-$(CONFIG_MMC_SUNXI_V4P5X)          += sunxi-mmc-v4p5x.o
 sunxi_mmc_host-$(CONFIG_MMC_SUNXI_V5P3X)          += sunxi-mmc-v5p3x.o
+sunxi_mmc_host-$(CONFIG_MMC_SUNXI_V5PX)          += sunxi-mmc-v5px.o
 sunxi_mmc_host-y                += sunxi-mmc.o sunxi-mmc-debug.o sunxi-mmc-export.o sunxi-mmc-panic.o
 
 obj-$(CONFIG_MMC_USDHI6ROL0)	+= usdhi6rol0.o

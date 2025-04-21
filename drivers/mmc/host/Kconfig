@@ -959,6 +959,13 @@ config MMC_SUNXI_V5P3X
 	help
 	  V5P3X sunxi SD/MMC Host Contrller support.
 
+config MMC_SUNXI_V5PX
+	bool "V5PX sunxi SD/MMC Host Controller support"
+	depends on MMC_SUNXI
+	default y
+	help
+	  V5PX sunxi SD/MMC Host Contrller support.
+
 
 config MMC_CQHCI
 	tristate "Command Queue Host Controller Interface support"
