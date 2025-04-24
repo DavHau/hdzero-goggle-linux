@@ -100,19 +100,19 @@
 
 		rotary_button_enter {
 			label = "ENTER";
-			gpios = <&pio PH 0 0 1 1 GPIO_ACTIVE_LOW>; // PH0
+			gpios = <&pio 7 0 0 1 1 GPIO_ACTIVE_LOW>; // PH0
 			gpio-key,wakeup;
 			linux,code = <KEY_ENTER>;
 		};
 	};
-	
+
 	//added by liran for rotary-encoder
 	rotary_axis {
 		// https://mchehab.fedorapeople.org/kernel_docs/input/devices/rotary-encoder.html
 		compatible = "rotary-encoder";
 		pinctrl-names = "default";
 		pinctrl-0 = <&rotary_pins_a>;
-		gpios = <&pio PH 1 0 1 1 GPIO_ACTIVE_LOW>, <&pio PH 5 0 1 1 GPIO_ACTIVE_LOW>; // PH1, PH5
+		gpios = <&pio 7 1 0 1 1 GPIO_ACTIVE_LOW>, <&pio 7 5 0 1 1 GPIO_ACTIVE_LOW>; // PH1, PH5
 		linux,axis = <1>; /* REL_Y */
 		rotary-encoder,relative-axis;
 		rotary-encoder,half-period;

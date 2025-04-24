@@ -25,7 +25,7 @@
 		serial1 = &uart1;
 		serial2 = &uart2;
 		serial3 = &uart3;
-		serial4 = &uart4;	
+		serial4 = &uart4;
 		twi0 = &twi0;
 		twi1 = &twi1;
 		twi2 = &twi2;
@@ -748,7 +748,7 @@
 			pinctrl-3 = <&aif3_pins_b>;
 
 			/*gpio-spk=<&pio 6 7 0>;*/
-			gpio-spk = <&pio PH 0 1 1 1 1>;
+			gpio-spk = <&pio 7 0 1 1 1 1>;
 			pa_ctl_level = <0x1>;
 			pa_msleep_time = <0xa0>;
 
@@ -1410,10 +1410,10 @@
 				sensor0_dvdd = "dvdd-csi-18";
 				sensor0_dvdd_vol = <1500000>;
 				sensor0_power_en = <>;
-				sensor0_reset = <&pio PI 3 1 0 1 0>;
-				sensor0_pwdn = <&pio PI 4 1 0 1 0>;
-				sensor0_sm_hs = <&pio PI 0 1 0 1 0>;
-				sensor0_sm_vs = <&pio PI 1 1 0 1 0>;
+				sensor0_reset = <&pio 8 3 1 0 1 0>;
+				sensor0_pwdn = <&pio 8 4 1 0 1 0>;
+				sensor0_sm_hs = <&pio 8 0 1 0 1 0>;
+				sensor0_sm_vs = <&pio 8 1 1 0 1 0>;
 				flash_handle = <&flash0>;
 				act_handle = <&actuator0>;
 				status	= "okay";
@@ -1437,10 +1437,10 @@
 				sensor1_dvdd = "dvdd-csi-18";
 				sensor1_dvdd_vol = <1500000>;
 				sensor1_power_en = <>;
-				sensor1_reset = <&pio PI 3 1 0 1 0>;
-				sensor1_pwdn = <&pio PI 4 1 0 1 0>;
-				sensor0_sm_hs = <&pio PI 0 1 0 1 0>;
-				sensor0_sm_vs = <&pio PI 1 1 0 1 0>;
+				sensor1_reset = <&pio 8 3 1 0 1 0>;
+				sensor1_pwdn = <&pio 8 4 1 0 1 0>;
+				sensor0_sm_hs = <&pio 8 0 1 0 1 0>;
+				sensor0_sm_vs = <&pio 8 1 1 0 1 0>;
 				flash_handle = <>;
 				act_handle = <>;
 				status	= "okay";
@@ -1507,10 +1507,10 @@
 			compatible = "allwinner,sun8i-vdevice";
 			device_type = "Vdevice";
 			interrupt-parent = <&pio>;
-			interrupts = < PD 3 IRQ_TYPE_LEVEL_HIGH>;	/* bank offset type */
+			interrupts = < 4 3 IRQ_TYPE_LEVEL_HIGH>;	/* bank offset type */
 			pinctrl-names = "default";
 			pinctrl-0 = <&vdevice_pins_a>;
-			test-gpios = <&pio PC 3 1 2 2 1>;
+			test-gpios = <&pio 3 3 1 2 2 1>;
 			status = "disabled";
 		};
 
